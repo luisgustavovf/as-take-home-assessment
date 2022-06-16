@@ -1,0 +1,31 @@
+<h2><strong>Search The Best-Matched Restaurant</strong></h2>
+
+<a class="button fancy-button" (click)="findBestMatchedRestaurants()"><em class="material-icons">manage_search</em>Find The Best-Matched Restaurants</a>
+
+
+<h4 *ngIf="restaurants">Top 5 Restaurants</h4>
+
+<div *ngFor="let restaurant of restaurants">
+    <h3>
+        <a [title]="restaurant.name + ' details'">
+            {{ restaurant.name }}
+        </a>
+    </h3>
+
+    <p *ngIf="restaurant.distance">
+        <strong>Distance:</strong> {{ restaurant.distance }}
+    </p>
+
+    <p *ngIf="restaurant.customerRating">
+        <strong>Customer Rating:</strong> {{ restaurant.customerRating }}
+    </p>
+
+    <p *ngIf="restaurant.price">
+        <strong>Price:</strong> {{ restaurant.price }}
+    </p>
+
+    <p *ngIf="restaurant.cuisineName">
+        <strong>Cuisine:</strong> {{ restaurant.cuisineName }}
+    </p>
+
+</div>
