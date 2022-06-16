@@ -1,11 +1,11 @@
 package com.as.takehomeassessement.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Restaurant implements IDomain {
 
     public static final int INDEX_NAME = 0;

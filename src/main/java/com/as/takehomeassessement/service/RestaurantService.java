@@ -10,6 +10,7 @@ import com.as.takehomeassessement.repository.RestaurantRepository;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -44,13 +45,12 @@ public class RestaurantService extends AbstractService<Restaurant, RestaurantDTO
         return matchedRestaurants.subList(0, subListSize);
     }
 
-    private void orderRestaurants(List<Restaurant> restaurants) {
-        restaurants.sort(((o1, o2) -> {
-            int order = o1.getDistance().compareTo(o2.getDistance());
-            if (order == 0) order = o2.getCustomerRating().compareTo(o1.getCustomerRating());
-            if (order == 0) order = o1.getPrice().compareTo(o2.getPrice());
-            return order;
-        }));
+    public void orderRestaurants(List<Restaurant> restaurants) {
+        restaurants.sort(
+                Comparator.comparing(Restaurant::getDistance)
+                .thenComparing(Restaurant::getCustomerRating, Comparator.nullsFirst(Comparator.reverseOrder()))
+                .thenComparing(Restaurant::getPrice)
+        );
     }
 
 }

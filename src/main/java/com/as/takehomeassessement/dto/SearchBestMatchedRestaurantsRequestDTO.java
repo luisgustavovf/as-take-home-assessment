@@ -1,8 +1,10 @@
 package com.as.takehomeassessement.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class SearchBestMatchedRestaurantsRequestDTO {
 
     private String restaurantName;
