@@ -12,6 +12,7 @@ public class RestaurantDTO implements IDTO {
     private int distance;
     private int price;
     private int cuisineId;
+    private String cuisineName;
 
     @Override
     public int getId() {

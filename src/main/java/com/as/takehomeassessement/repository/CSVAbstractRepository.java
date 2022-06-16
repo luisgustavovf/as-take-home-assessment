@@ -4,6 +4,8 @@ import com.as.takehomeassessement.domain.IDomain;
 import com.as.takehomeassessement.exception.CustomRuntimeException;
 import com.as.takehomeassessement.parser.ICSVConverter;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+import lombok.Getter;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +18,16 @@ public abstract class CSVAbstractRepository<D extends IDomain> implements IRepos
 
     protected ICSVConverter<D> csvConverter;
 
+    @Getter
+    protected List<D> cache;
+
+    @Getter
+    protected boolean isDirtyCache = true;
+
+    public void setDirtyCache(boolean b) {
+        isDirtyCache = b;
+    }
+
     protected CSVAbstractRepository(ICSVConverter<D> csvConverter) {
         this.csvConverter = csvConverter;
     }
@@ -24,22 +36,29 @@ public abstract class CSVAbstractRepository<D extends IDomain> implements IRepos
 
     @Override
     public Optional<D> findById(int id) {
-        return Optional.empty();
+        return findAll().parallelStream()
+                .filter(o -> Objects.equals(o.getId(), id))
+                .findFirst();
     }
 
     @Override
     public List<D> findAll() throws CustomRuntimeException {
-        List<D> records = new ArrayList<>();
+
+        if (!isDirtyCache) return new ArrayList<>(cache);
+
+        cache = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(new FileReader(Objects.requireNonNull(getClass().getClassLoader().getResource(getFilePath())).getFile()))) {
             String[] values;
             csvReader.readNext(); //skipping the title row
             while ((values = csvReader.readNext()) != null) {
-                records.add(csvConverter.convertToDomain(values));
+                cache.add(csvConverter.convertToDomain(values));
             }
-        } catch (IOException e) {
+            isDirtyCache = false;
+        } catch (IOException | CsvValidationException e) {
             throw new CustomRuntimeException(e);
         }
-        return records;
+
+        return new ArrayList<>(cache);
     }
 
 }

@@ -2,6 +2,7 @@ package com.as.takehomeassessement.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Builder
@@ -14,10 +15,11 @@ public class Restaurant implements IDomain {
     public static final int INDEX_CUISINE_ID = 4;
 
     private String name;
-    private int customerRating;
-    private int distance;
-    private int price;
-    private int cuisineId;
+    private Integer customerRating;
+    private Integer distance;
+    private Integer price;
+    private Integer cuisineId;
+    @Setter private Cuisine cuisine;
 
     @Override
     public int getId() {
