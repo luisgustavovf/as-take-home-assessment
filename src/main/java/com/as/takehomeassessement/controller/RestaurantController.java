@@ -23,12 +23,12 @@ public class RestaurantController extends AbstractController<Restaurant, Restaur
     }
 
     @PostMapping("/findBestMatchedRestaurants")
-    public ResponseEntity<List<Restaurant>> findTopNBestMatchedRestaurants(@RequestBody SearchBestMatchedRestaurantsRequestDTO requestDTO) {
+    public ResponseEntity<List<RestaurantDTO>> findTopNBestMatchedRestaurants(@RequestBody SearchBestMatchedRestaurantsRequestDTO requestDTO) {
 
         //TODO: If parameter values are invalid, return an error message.
 
         try {
-            List<Restaurant> topNBestMatchedRestaurants = ((RestaurantService) service).findTopNBestMatchedRestaurants(requestDTO,
+            List<RestaurantDTO> topNBestMatchedRestaurants = ((RestaurantService) service).findTopNBestMatchedRestaurants(requestDTO,
                     NUMBER_OF_RESTAURANTS_TO_MATCH);
 
             return new ResponseEntity<>(topNBestMatchedRestaurants, HttpStatus.OK);

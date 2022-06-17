@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Service
@@ -32,7 +33,7 @@ public class RestaurantService extends AbstractService<Restaurant, RestaurantDTO
         return mapper;
     }
 
-    public List<Restaurant> findTopNBestMatchedRestaurants(SearchBestMatchedRestaurantsRequestDTO requestDTO, int n) {
+    public List<RestaurantDTO> findTopNBestMatchedRestaurants(SearchBestMatchedRestaurantsRequestDTO requestDTO, int n) {
 
         List<Restaurant> matchedRestaurants = ((RestaurantRepository) getRepository()).findBestMatchedRestaurants(requestDTO.getRestaurantName(),
                 requestDTO.getCustomerRating(),
@@ -42,7 +43,12 @@ public class RestaurantService extends AbstractService<Restaurant, RestaurantDTO
 
         orderRestaurants(matchedRestaurants);
         int subListSize = Math.min(matchedRestaurants.size(), n);
-        return matchedRestaurants.subList(0, subListSize);
+
+        return matchedRestaurants
+                .subList(0, subListSize)
+                .stream()
+                .map(getMapper()::parseToDTO)
+                .collect(Collectors.toList());
     }
 
     public void orderRestaurants(List<Restaurant> restaurants) {

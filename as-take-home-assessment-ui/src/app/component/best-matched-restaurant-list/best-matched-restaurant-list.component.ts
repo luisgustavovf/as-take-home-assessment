@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {RestaurantService} from "../../service/restaurant.service";
+import {SearchBestRestaurantsRequestDTO} from "../../model/search-best-restaurants-request-dto.model";
 
 @Component({
   selector: 'app-best-matched-restaurant-list',
@@ -10,23 +11,14 @@ export class BestMatchedRestaurantListComponent {
 
   restaurants: any = [];
 
+  searchBestRestaurantsRequestDTO: SearchBestRestaurantsRequestDTO = new SearchBestRestaurantsRequestDTO();
+
   constructor(private restaurantService: RestaurantService) { }
 
-  share() {
-    window.alert('The product has been shared!');
-  }
-
   findBestMatchedRestaurants() {
-    this.restaurantService.findAll().subscribe((resp: any) => {
-        console.log(resp.body);
-      this.restaurants = resp.body;
-    }, (error: { message: any; }) => window.alert(error.message));
+    this.restaurantService.findBestMatchedRestaurants(this.searchBestRestaurantsRequestDTO).subscribe({
+      next: (resp: any) => { this.restaurants = resp.body; },
+      error: (error: { message: any; }) => window.alert(error.message)
+  });
   }
 }
-
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/

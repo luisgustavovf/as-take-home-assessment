@@ -1,6 +1,27 @@
 
 
-.fancy-button, .fancy-button > .material-icons {
+button > .material-icons {
     background-color: #1976d2;
     color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+form .form-group {
+    margin-right: 13px;
+}
+
+form input, form button {
+    border: 1px solid #1976d2;
+    border-radius: 3px;
+    height: 30px;
+}
+
+form input {
+    min-width: 250px;
 }
