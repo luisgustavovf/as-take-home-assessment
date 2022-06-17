@@ -1,4 +1,4 @@
-<h2><strong>Search The Best-Matched Restaurant</strong></h2>
+<h2><strong>Search Restaurant</strong></h2>
 
 <div class="flex-row">
     <form class="col-md-12">
@@ -57,13 +57,12 @@
 
 <h4 *ngIf="this.restaurants.length > 0">Top 5 Best Matched Restaurants</h4>
 
-
 <div class="flex-row">
     <div *ngFor="let restaurant of restaurants">
         <div class="card">
 
             <h3>
-                <a [title]="restaurant.name + ' details'">
+                <a [title]="restaurant.name">
                     {{ restaurant.name }}
                 </a>
             </h3>
@@ -87,4 +86,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="empty-response">
+    <h2 *ngIf="this.isResponseEmpty">No results were found for the given parameters</h2>
 </div>

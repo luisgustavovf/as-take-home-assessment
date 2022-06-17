@@ -24,9 +24,6 @@ public class RestaurantController extends AbstractController<Restaurant, Restaur
 
     @PostMapping("/findBestMatchedRestaurants")
     public ResponseEntity<List<RestaurantDTO>> findTopNBestMatchedRestaurants(@RequestBody SearchBestMatchedRestaurantsRequestDTO requestDTO) {
-
-        //TODO: If parameter values are invalid, return an error message.
-
         try {
             List<RestaurantDTO> topNBestMatchedRestaurants = ((RestaurantService) service).findTopNBestMatchedRestaurants(requestDTO,
                     NUMBER_OF_RESTAURANTS_TO_MATCH);
@@ -35,7 +32,6 @@ public class RestaurantController extends AbstractController<Restaurant, Restaur
         } catch (CustomRuntimeException e) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
         }
-
     }
 
 }

@@ -42,3 +42,9 @@ form input {
     padding: 0 30px;
 
 }
+
+.empty-response {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
