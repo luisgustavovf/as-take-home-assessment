@@ -18,7 +18,8 @@
                    (ngModelChange)="searchBestRestaurantsRequestDTO.customerRating = $event"
                    [type]="'number'"
                    [placeholder]="'Customer Rating'"
-                   [maxlength]='50'/>
+                   [max]="5"
+                   [min]="1" />
         </div>
         <div class="form-group">
             <label>Search by Distance</label>
@@ -27,7 +28,7 @@
                    (ngModelChange)="searchBestRestaurantsRequestDTO.distance = $event"
                    [type]="'number'"
                    [placeholder]="'Distance'"
-                   [maxlength]='50'/>
+                   [min]="0"/>
         </div>
         <div class="form-group">
             <label>Search by Price</label>
@@ -36,7 +37,7 @@
                    (ngModelChange)="searchBestRestaurantsRequestDTO.price = $event"
                    [type]="'number'"
                    [placeholder]="'Price'"
-                   [maxlength]='50'/>
+                   [min]="0"/>
         </div>
         <div class="form-group">
             <label>Search by Cuisine</label>
