@@ -23,5 +23,6 @@
 hs_err_pid*
 
 target
+/as-take-home-assessment-ui/dist
 /as-take-home-assessment-ui/node_modules/
 /as-take-home-assessment-ui/.angular/cache/14.0.2/

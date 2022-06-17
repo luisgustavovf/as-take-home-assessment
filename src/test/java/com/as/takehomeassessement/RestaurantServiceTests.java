@@ -1,6 +1,7 @@
 package com.as.takehomeassessement;
 
 import com.as.takehomeassessement.domain.Restaurant;
+import com.as.takehomeassessement.dto.RestaurantDTO;
 import com.as.takehomeassessement.dto.SearchBestMatchedRestaurantsRequestDTO;
 import com.as.takehomeassessement.mapper.RestaurantMapper;
 import com.as.takehomeassessement.repository.RestaurantRepository;
@@ -55,7 +56,7 @@ class RestaurantServiceTests {
 				.cuisine("Chinese")
 				.build();
 
-		List<Restaurant> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
+		List<RestaurantDTO> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
 
 		for (int i = 0; i < restaurants.size(); i++) {
 			Assertions.assertEquals(EXPECTED_CHINESE_ARRAY[i], restaurants.get(i).getName());
@@ -69,7 +70,7 @@ class RestaurantServiceTests {
 				.distance(1)
 				.build();
 
-		List<Restaurant> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
+		List<RestaurantDTO> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
 
 		for (int i = 0; i < restaurants.size(); i++) {
 			Assertions.assertEquals(EXPECTED_DISTANCE_1_ARRAY[i], restaurants.get(i).getName());
@@ -85,7 +86,7 @@ class RestaurantServiceTests {
 				.price(15)
 				.build();
 
-		List<Restaurant> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
+		List<RestaurantDTO> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
 
 		for (int i = 0; i < restaurants.size(); i++) {
 			Assertions.assertEquals(EXPECTED_RATING_5_DISTANCE_2_PRICE_15_ARRAY[i], restaurants.get(i).getName());
@@ -99,7 +100,7 @@ class RestaurantServiceTests {
 				.restaurantName("Del")
 				.build();
 
-		List<Restaurant> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
+		List<RestaurantDTO> restaurants = restaurantService.findTopNBestMatchedRestaurants(requestDTO, NUMBER_OF_RESTAURANTS_TO_MATCH);
 
 		for (int i = 0; i < restaurants.size(); i++) {
 			Assertions.assertEquals(EXPECTED_NAME_CONTAINS_DEL_ARRAY[i], restaurants.get(i).getName());
