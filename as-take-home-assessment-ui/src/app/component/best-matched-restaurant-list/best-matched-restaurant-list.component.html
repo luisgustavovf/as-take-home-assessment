@@ -1,6 +1,6 @@
 <h2><strong>Search The Best-Matched Restaurant</strong></h2>
 
-<div class="row">
+<div class="flex-row">
     <form class="col-md-12">
         <div class="form-group">
             <label>Search by Restaurant Name</label>
@@ -55,29 +55,36 @@
     </form>
 </div>
 
-<h4 *ngIf="this.restaurants.length > 0">Top 5 Restaurants</h4>
+<h4 *ngIf="this.restaurants.length > 0">Top 5 Best Matched Restaurants</h4>
 
-<div *ngFor="let restaurant of restaurants">
-    <h3>
-        <a [title]="restaurant.name + ' details'">
-            {{ restaurant.name }}
-        </a>
-    </h3>
 
-    <p *ngIf="restaurant.distance">
-        <strong>Distance:</strong> {{ restaurant.distance }}
-    </p>
+<div class="flex-row">
+    <div *ngFor="let restaurant of restaurants">
+        <div class="card">
 
-    <p *ngIf="restaurant.customerRating">
-        <strong>Customer Rating:</strong> {{ restaurant.customerRating }}
-    </p>
+            <h3>
+                <a [title]="restaurant.name + ' details'">
+                    {{ restaurant.name }}
+                </a>
+            </h3>
 
-    <p *ngIf="restaurant.price">
-        <strong>Price:</strong> {{ restaurant.price }}
-    </p>
+            <div class="card-body">
+                <p *ngIf="restaurant.distance">
+                    <strong>Distance:</strong> {{ restaurant.distance }}
+                </p>
 
-    <p *ngIf="restaurant.cuisineName">
-        <strong>Cuisine:</strong> {{ restaurant.cuisineName }}
-    </p>
+                <p *ngIf="restaurant.customerRating">
+                    <strong>Customer Rating:</strong> {{ restaurant.customerRating }}
+                </p>
 
+                <p *ngIf="restaurant.price">
+                    <strong>Price:</strong> {{ restaurant.price }}
+                </p>
+
+                <p *ngIf="restaurant.cuisineName">
+                    <strong>Cuisine:</strong> {{ restaurant.cuisineName }}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

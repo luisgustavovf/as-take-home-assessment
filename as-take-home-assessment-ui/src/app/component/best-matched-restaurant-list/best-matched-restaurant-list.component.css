@@ -5,11 +5,15 @@ button > .material-icons {
     color: white;
 }
 
-form {
+form, .flex-row {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 10px;
+}
+
+.flex-row .cart-item {
+    margin-right: 11px;
 }
 
 form .form-group {
@@ -24,4 +28,17 @@ form input, form button {
 
 form input {
     min-width: 250px;
+}
+
+.card {
+    margin-right: 15px;
+    background: #eef4fd;
+    border: 1px solid #cdd3f5;
+    border-radius: 7px;
+    min-width: 275px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 30px;
+
 }
