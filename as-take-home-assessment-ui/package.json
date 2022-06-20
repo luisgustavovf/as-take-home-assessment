@@ -8,6 +8,7 @@
     "start": "ng serve",
     "start:local": "ng serve --proxy-config proxy.conf.local.json",
     "build": "ng build",
+    "build:local": "ng build --proxy-config proxy.conf.local.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "ng e2e"
@@ -23,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "angular-in-memory-web-api": "~0.13.0",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
